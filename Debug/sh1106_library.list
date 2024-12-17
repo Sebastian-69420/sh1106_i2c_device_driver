@@ -5,47 +5,47 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   000000c0  08000000  08000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00003248  080000c0  080000c0  000010c0  2**2
+  1 .text         0000325c  080000c0  080000c0  000010c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000030  08003308  08003308  00004308  2**2
+  2 .rodata       00000030  0800331c  0800331c  0000431c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08003338  08003338  00005038  2**0
+  3 .ARM.extab    00000000  0800334c  0800334c  00005038  2**0
                   CONTENTS
-  4 .ARM          00000000  08003338  08003338  00005038  2**0
+  4 .ARM          00000000  0800334c  0800334c  00005038  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08003338  08003338  00005038  2**0
+  5 .preinit_array 00000000  0800334c  0800334c  00005038  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08003338  08003338  00004338  2**2
+  6 .init_array   00000004  0800334c  0800334c  0000434c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0800333c  0800333c  0000433c  2**2
+  7 .fini_array   00000004  08003350  08003350  00004350  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000038  20000000  08003340  00005000  2**2
+  8 .data         00000038  20000000  08003354  00005000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000004e0  20000038  08003378  00005038  2**2
+  9 .bss          000004e0  20000038  0800338c  00005038  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000518  08003378  00005518  2**0
+ 10 ._user_heap_stack 00000600  20000518  0800338c  00005518  2**0
                   ALLOC
  11 .ARM.attributes 00000028  00000000  00000000  00005038  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000795c  00000000  00000000  00005060  2**0
+ 12 .debug_info   000079a8  00000000  00000000  00005060  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001ae8  00000000  00000000  0000c9bc  2**0
+ 13 .debug_abbrev 00001acd  00000000  00000000  0000ca08  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000007b8  00000000  00000000  0000e4a8  2**3
+ 14 .debug_aranges 000007c0  00000000  00000000  0000e4d8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000005e6  00000000  00000000  0000ec60  2**0
+ 15 .debug_rnglists 000005ec  00000000  00000000  0000ec98  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0000e5b5  00000000  00000000  0000f246  2**0
+ 16 .debug_macro  0000e5b5  00000000  00000000  0000f284  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000a7f9  00000000  00000000  0001d7fb  2**0
+ 17 .debug_line   0000a840  00000000  00000000  0001d839  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0005989c  00000000  00000000  00027ff4  2**0
+ 18 .debug_str    000598dc  00000000  00000000  00028079  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00081890  2**0
+ 19 .comment      00000043  00000000  00000000  00081955  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001a48  00000000  00000000  000818d4  2**2
+ 20 .debug_frame  00001a90  00000000  00000000  00081998  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000071  00000000  00000000  0008331c  2**0
+ 21 .debug_line_str 00000071  00000000  00000000  00083428  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -67,7 +67,7 @@ Disassembly of section .text:
  80000da:	bd10      	pop	{r4, pc}
  80000dc:	20000038 	.word	0x20000038
  80000e0:	00000000 	.word	0x00000000
- 80000e4:	080032f0 	.word	0x080032f0
+ 80000e4:	08003304 	.word	0x08003304
 
 080000e8 <frame_dummy>:
  80000e8:	4b04      	ldr	r3, [pc, #16]	@ (80000fc <frame_dummy+0x14>)
@@ -82,7 +82,7 @@ Disassembly of section .text:
  80000fa:	46c0      	nop			@ (mov r8, r8)
  80000fc:	00000000 	.word	0x00000000
  8000100:	2000003c 	.word	0x2000003c
- 8000104:	080032f0 	.word	0x080032f0
+ 8000104:	08003304 	.word	0x08003304
 
 08000108 <__udivsi3>:
  8000108:	2200      	movs	r2, #0
@@ -281,25 +281,25 @@ int main(void) {
  800024c:	220c      	movs	r2, #12
  800024e:	213f      	movs	r1, #63	@ 0x3f
  8000250:	2064      	movs	r0, #100	@ 0x64
- 8000252:	f000 fa44 	bl	80006de <SH1106_Draw_Line>
+ 8000252:	f000 fa3f 	bl	80006d4 <SH1106_Draw_Line>
   SH1106_Draw_Line(23, 15, 96, 18);
  8000256:	2312      	movs	r3, #18
  8000258:	2260      	movs	r2, #96	@ 0x60
  800025a:	210f      	movs	r1, #15
  800025c:	2017      	movs	r0, #23
- 800025e:	f000 fa3e 	bl	80006de <SH1106_Draw_Line>
+ 800025e:	f000 fa39 	bl	80006d4 <SH1106_Draw_Line>
   SH1106_Draw_Line(0, 55, 85, 38);
  8000262:	2326      	movs	r3, #38	@ 0x26
  8000264:	2255      	movs	r2, #85	@ 0x55
  8000266:	2137      	movs	r1, #55	@ 0x37
  8000268:	2000      	movs	r0, #0
- 800026a:	f000 fa38 	bl	80006de <SH1106_Draw_Line>
+ 800026a:	f000 fa33 	bl	80006d4 <SH1106_Draw_Line>
   SH1106_Draw_Line(68, 3, 22, 52);
  800026e:	2334      	movs	r3, #52	@ 0x34
  8000270:	2216      	movs	r2, #22
  8000272:	2103      	movs	r1, #3
  8000274:	2044      	movs	r0, #68	@ 0x44
- 8000276:	f000 fa32 	bl	80006de <SH1106_Draw_Line>
+ 8000276:	f000 fa2d 	bl	80006d4 <SH1106_Draw_Line>
 
   /* USER CODE END 2 */
 
@@ -739,7 +739,7 @@ void SH1106_Init(I2C_HandleTypeDef *hi2c, uint8_t deviceAddress) {
 /**
   * @brief This function turns the display on and displays the RAM content.
   */
-void SH1106_Display_On() {
+void SH1106_Display_On(void) {
  80004c4:	b580      	push	{r7, lr}
  80004c6:	b082      	sub	sp, #8
  80004c8:	af00      	add	r7, sp, #0
@@ -747,8 +747,8 @@ void SH1106_Display_On() {
  80004ca:	1d3b      	adds	r3, r7, #4
  80004cc:	4a06      	ldr	r2, [pc, #24]	@ (80004e8 <SH1106_Display_On+0x24>)
  80004ce:	601a      	str	r2, [r3, #0]
-    SH1106_COMMAND, DISPLAY_ON_RAM_CONTENT,
-    SH1106_COMMAND, DISPLAY_ON_NORMAL_MODE
+    SH1106_COMMAND_FLAG, DISPLAY_ON_RAM_CONTENT,
+    SH1106_COMMAND_FLAG, DISPLAY_ON_NORMAL_MODE
   };
   SH1106_CALL_HAL_I2C_Transmit(data, 4, 1000);
  80004d0:	23fa      	movs	r3, #250	@ 0xfa
@@ -771,12 +771,12 @@ void SH1106_Display_On() {
 /**
   * @brief This function clears the display ram to all zeros.
   */
-void SH1106_Display_Clear() {
+void SH1106_Display_Clear(void) {
  80004ec:	b590      	push	{r4, r7, lr}
  80004ee:	b0a3      	sub	sp, #140	@ 0x8c
  80004f0:	af00      	add	r7, sp, #0
   uint8_t pixelOff[SH1106_WIDTH + 1];
-  pixelOff[0] = SH1106_DATA;
+  pixelOff[0] = SH1106_DATA_FLAG;
  80004f2:	003b      	movs	r3, r7
  80004f4:	2240      	movs	r2, #64	@ 0x40
  80004f6:	701a      	strb	r2, [r3, #0]
@@ -793,557 +793,547 @@ void SH1106_Display_Clear() {
  8000508:	18fb      	adds	r3, r7, r3
  800050a:	2200      	movs	r2, #0
  800050c:	701a      	strb	r2, [r3, #0]
- 800050e:	e014      	b.n	800053a <SH1106_Display_Clear+0x4e>
-    SH1106_Set_Page_Address(page);
+ 800050e:	e012      	b.n	8000536 <SH1106_Display_Clear+0x4a>
+    SH1106_Set_Page_And_Column_Address(page, 0);
  8000510:	2487      	movs	r4, #135	@ 0x87
  8000512:	193b      	adds	r3, r7, r4
  8000514:	781b      	ldrb	r3, [r3, #0]
- 8000516:	0018      	movs	r0, r3
- 8000518:	f000 f83c 	bl	8000594 <SH1106_Set_Page_Address>
-    SH1106_Set_Column_Address(0);
- 800051c:	2000      	movs	r0, #0
- 800051e:	f000 f85f 	bl	80005e0 <SH1106_Set_Column_Address>
-
+ 8000516:	2100      	movs	r1, #0
+ 8000518:	0018      	movs	r0, r3
+ 800051a:	f000 f87f 	bl	800061c <SH1106_Set_Page_And_Column_Address>
     SH1106_CALL_HAL_I2C_Transmit(pixelOff, sizeof(pixelOff), 1000);
- 8000522:	23fa      	movs	r3, #250	@ 0xfa
- 8000524:	009a      	lsls	r2, r3, #2
- 8000526:	003b      	movs	r3, r7
- 8000528:	2185      	movs	r1, #133	@ 0x85
- 800052a:	0018      	movs	r0, r3
- 800052c:	f7ff ff7e 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
+ 800051e:	23fa      	movs	r3, #250	@ 0xfa
+ 8000520:	009a      	lsls	r2, r3, #2
+ 8000522:	003b      	movs	r3, r7
+ 8000524:	2185      	movs	r1, #133	@ 0x85
+ 8000526:	0018      	movs	r0, r3
+ 8000528:	f7ff ff80 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
   for(uint8_t page = 0; page < 8; page++){
+ 800052c:	193b      	adds	r3, r7, r4
+ 800052e:	781a      	ldrb	r2, [r3, #0]
  8000530:	193b      	adds	r3, r7, r4
- 8000532:	781a      	ldrb	r2, [r3, #0]
- 8000534:	193b      	adds	r3, r7, r4
- 8000536:	3201      	adds	r2, #1
- 8000538:	701a      	strb	r2, [r3, #0]
- 800053a:	2387      	movs	r3, #135	@ 0x87
- 800053c:	18fb      	adds	r3, r7, r3
- 800053e:	781b      	ldrb	r3, [r3, #0]
- 8000540:	2b07      	cmp	r3, #7
- 8000542:	d9e5      	bls.n	8000510 <SH1106_Display_Clear+0x24>
+ 8000532:	3201      	adds	r2, #1
+ 8000534:	701a      	strb	r2, [r3, #0]
+ 8000536:	2387      	movs	r3, #135	@ 0x87
+ 8000538:	18fb      	adds	r3, r7, r3
+ 800053a:	781b      	ldrb	r3, [r3, #0]
+ 800053c:	2b07      	cmp	r3, #7
+ 800053e:	d9e7      	bls.n	8000510 <SH1106_Display_Clear+0x24>
   }
 }
- 8000544:	46c0      	nop			@ (mov r8, r8)
- 8000546:	46c0      	nop			@ (mov r8, r8)
- 8000548:	46bd      	mov	sp, r7
- 800054a:	b023      	add	sp, #140	@ 0x8c
- 800054c:	bd90      	pop	{r4, r7, pc}
+ 8000540:	46c0      	nop			@ (mov r8, r8)
+ 8000542:	46c0      	nop			@ (mov r8, r8)
+ 8000544:	46bd      	mov	sp, r7
+ 8000546:	b023      	add	sp, #140	@ 0x8c
+ 8000548:	bd90      	pop	{r4, r7, pc}
 	...
 
-08000550 <SH1106_Set_Cursor>:
-/**
-  * @brief This function sets the cursor to a position
-  * @param page:          y-position (0-7)
-  * @param column:        x-position (0-127)
-  */
-void SH1106_Set_Cursor(uint8_t page, uint8_t column) {
- 8000550:	b580      	push	{r7, lr}
- 8000552:	b082      	sub	sp, #8
- 8000554:	af00      	add	r7, sp, #0
- 8000556:	0002      	movs	r2, r0
- 8000558:	1dfb      	adds	r3, r7, #7
- 800055a:	701a      	strb	r2, [r3, #0]
- 800055c:	1dbb      	adds	r3, r7, #6
- 800055e:	1c0a      	adds	r2, r1, #0
- 8000560:	701a      	strb	r2, [r3, #0]
-  POS_Y = page;
- 8000562:	4b0a      	ldr	r3, [pc, #40]	@ (800058c <SH1106_Set_Cursor+0x3c>)
- 8000564:	1dfa      	adds	r2, r7, #7
- 8000566:	7812      	ldrb	r2, [r2, #0]
- 8000568:	701a      	strb	r2, [r3, #0]
-  POS_X = column;
- 800056a:	4b09      	ldr	r3, [pc, #36]	@ (8000590 <SH1106_Set_Cursor+0x40>)
- 800056c:	1dba      	adds	r2, r7, #6
- 800056e:	7812      	ldrb	r2, [r2, #0]
- 8000570:	701a      	strb	r2, [r3, #0]
-  SH1106_Set_Page_And_Column_Address(POS_Y, POS_X);
- 8000572:	4b06      	ldr	r3, [pc, #24]	@ (800058c <SH1106_Set_Cursor+0x3c>)
- 8000574:	781a      	ldrb	r2, [r3, #0]
- 8000576:	4b06      	ldr	r3, [pc, #24]	@ (8000590 <SH1106_Set_Cursor+0x40>)
- 8000578:	781b      	ldrb	r3, [r3, #0]
- 800057a:	0019      	movs	r1, r3
- 800057c:	0010      	movs	r0, r2
- 800057e:	f000 f871 	bl	8000664 <SH1106_Set_Page_And_Column_Address>
-}
- 8000582:	46c0      	nop			@ (mov r8, r8)
- 8000584:	46bd      	mov	sp, r7
- 8000586:	b002      	add	sp, #8
- 8000588:	bd80      	pop	{r7, pc}
- 800058a:	46c0      	nop			@ (mov r8, r8)
- 800058c:	200000f2 	.word	0x200000f2
- 8000590:	200000f1 	.word	0x200000f1
-
-08000594 <SH1106_Set_Page_Address>:
+0800054c <SH1106_Set_Page_Address>:
 
 /**
   * @brief This function sets the page.
   * @param page:          page number from 0-7
   */
 void SH1106_Set_Page_Address(uint8_t page) {
- 8000594:	b580      	push	{r7, lr}
- 8000596:	b084      	sub	sp, #16
- 8000598:	af00      	add	r7, sp, #0
- 800059a:	0002      	movs	r2, r0
- 800059c:	1dfb      	adds	r3, r7, #7
- 800059e:	701a      	strb	r2, [r3, #0]
+ 800054c:	b580      	push	{r7, lr}
+ 800054e:	b084      	sub	sp, #16
+ 8000550:	af00      	add	r7, sp, #0
+ 8000552:	0002      	movs	r2, r0
+ 8000554:	1dfb      	adds	r3, r7, #7
+ 8000556:	701a      	strb	r2, [r3, #0]
   POS_Y = page;
- 80005a0:	4b0e      	ldr	r3, [pc, #56]	@ (80005dc <SH1106_Set_Page_Address+0x48>)
- 80005a2:	1dfa      	adds	r2, r7, #7
- 80005a4:	7812      	ldrb	r2, [r2, #0]
- 80005a6:	701a      	strb	r2, [r3, #0]
+ 8000558:	4b0e      	ldr	r3, [pc, #56]	@ (8000594 <SH1106_Set_Page_Address+0x48>)
+ 800055a:	1dfa      	adds	r2, r7, #7
+ 800055c:	7812      	ldrb	r2, [r2, #0]
+ 800055e:	701a      	strb	r2, [r3, #0]
   if(page > 7) {
- 80005a8:	1dfb      	adds	r3, r7, #7
- 80005aa:	781b      	ldrb	r3, [r3, #0]
- 80005ac:	2b07      	cmp	r3, #7
- 80005ae:	d811      	bhi.n	80005d4 <SH1106_Set_Page_Address+0x40>
+ 8000560:	1dfb      	adds	r3, r7, #7
+ 8000562:	781b      	ldrb	r3, [r3, #0]
+ 8000564:	2b07      	cmp	r3, #7
+ 8000566:	d811      	bhi.n	800058c <SH1106_Set_Page_Address+0x40>
     return; // Check if page is in bounds.
   }
-  uint8_t setPageAddress[2] = {SH1106_COMMAND, SET_PAGE_ADDRESS_FOR_PAGE_ADDRESSING_MODE + page};
- 80005b0:	210c      	movs	r1, #12
- 80005b2:	187b      	adds	r3, r7, r1
- 80005b4:	2200      	movs	r2, #0
- 80005b6:	701a      	strb	r2, [r3, #0]
- 80005b8:	1dfb      	adds	r3, r7, #7
- 80005ba:	781b      	ldrb	r3, [r3, #0]
- 80005bc:	3b50      	subs	r3, #80	@ 0x50
- 80005be:	b2da      	uxtb	r2, r3
- 80005c0:	187b      	adds	r3, r7, r1
- 80005c2:	705a      	strb	r2, [r3, #1]
+  uint8_t setPageAddress[2] = {SH1106_COMMAND_FLAG, SET_PAGE_ADDRESS_FOR_PAGE_ADDRESSING_MODE + page};
+ 8000568:	210c      	movs	r1, #12
+ 800056a:	187b      	adds	r3, r7, r1
+ 800056c:	2200      	movs	r2, #0
+ 800056e:	701a      	strb	r2, [r3, #0]
+ 8000570:	1dfb      	adds	r3, r7, #7
+ 8000572:	781b      	ldrb	r3, [r3, #0]
+ 8000574:	3b50      	subs	r3, #80	@ 0x50
+ 8000576:	b2da      	uxtb	r2, r3
+ 8000578:	187b      	adds	r3, r7, r1
+ 800057a:	705a      	strb	r2, [r3, #1]
   SH1106_CALL_HAL_I2C_Transmit(setPageAddress, 2, 1000);
- 80005c4:	23fa      	movs	r3, #250	@ 0xfa
- 80005c6:	009a      	lsls	r2, r3, #2
- 80005c8:	187b      	adds	r3, r7, r1
- 80005ca:	2102      	movs	r1, #2
- 80005cc:	0018      	movs	r0, r3
- 80005ce:	f7ff ff2d 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
- 80005d2:	e000      	b.n	80005d6 <SH1106_Set_Page_Address+0x42>
+ 800057c:	23fa      	movs	r3, #250	@ 0xfa
+ 800057e:	009a      	lsls	r2, r3, #2
+ 8000580:	187b      	adds	r3, r7, r1
+ 8000582:	2102      	movs	r1, #2
+ 8000584:	0018      	movs	r0, r3
+ 8000586:	f7ff ff51 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
+ 800058a:	e000      	b.n	800058e <SH1106_Set_Page_Address+0x42>
     return; // Check if page is in bounds.
- 80005d4:	46c0      	nop			@ (mov r8, r8)
+ 800058c:	46c0      	nop			@ (mov r8, r8)
 }
- 80005d6:	46bd      	mov	sp, r7
- 80005d8:	b004      	add	sp, #16
- 80005da:	bd80      	pop	{r7, pc}
- 80005dc:	200000f2 	.word	0x200000f2
+ 800058e:	46bd      	mov	sp, r7
+ 8000590:	b004      	add	sp, #16
+ 8000592:	bd80      	pop	{r7, pc}
+ 8000594:	200000f2 	.word	0x200000f2
 
-080005e0 <SH1106_Set_Column_Address>:
+08000598 <SH1106_Set_Column_Address>:
 
 /**
   * @brief This function sets the column.
   * @param column:        lower-column number from 0-131
   */
 void SH1106_Set_Column_Address(uint8_t column) {
- 80005e0:	b5b0      	push	{r4, r5, r7, lr}
- 80005e2:	b084      	sub	sp, #16
- 80005e4:	af00      	add	r7, sp, #0
- 80005e6:	0002      	movs	r2, r0
- 80005e8:	1dfb      	adds	r3, r7, #7
- 80005ea:	701a      	strb	r2, [r3, #0]
+ 8000598:	b5b0      	push	{r4, r5, r7, lr}
+ 800059a:	b084      	sub	sp, #16
+ 800059c:	af00      	add	r7, sp, #0
+ 800059e:	0002      	movs	r2, r0
+ 80005a0:	1dfb      	adds	r3, r7, #7
+ 80005a2:	701a      	strb	r2, [r3, #0]
   POS_X = column;
- 80005ec:	4b1c      	ldr	r3, [pc, #112]	@ (8000660 <SH1106_Set_Column_Address+0x80>)
- 80005ee:	1dfa      	adds	r2, r7, #7
- 80005f0:	7812      	ldrb	r2, [r2, #0]
- 80005f2:	701a      	strb	r2, [r3, #0]
+ 80005a4:	4b1c      	ldr	r3, [pc, #112]	@ (8000618 <SH1106_Set_Column_Address+0x80>)
+ 80005a6:	1dfa      	adds	r2, r7, #7
+ 80005a8:	7812      	ldrb	r2, [r2, #0]
+ 80005aa:	701a      	strb	r2, [r3, #0]
   column = column + 2; // Add 2 to account for bytes in ram without pixels.
- 80005f4:	1dfb      	adds	r3, r7, #7
- 80005f6:	1dfa      	adds	r2, r7, #7
- 80005f8:	7812      	ldrb	r2, [r2, #0]
- 80005fa:	3202      	adds	r2, #2
- 80005fc:	701a      	strb	r2, [r3, #0]
+ 80005ac:	1dfb      	adds	r3, r7, #7
+ 80005ae:	1dfa      	adds	r2, r7, #7
+ 80005b0:	7812      	ldrb	r2, [r2, #0]
+ 80005b2:	3202      	adds	r2, #2
+ 80005b4:	701a      	strb	r2, [r3, #0]
   uint8_t lowerNibble  = column & 0x0F; // Mask the lower nibble
- 80005fe:	200f      	movs	r0, #15
- 8000600:	183b      	adds	r3, r7, r0
- 8000602:	1dfa      	adds	r2, r7, #7
- 8000604:	7812      	ldrb	r2, [r2, #0]
- 8000606:	210f      	movs	r1, #15
- 8000608:	400a      	ands	r2, r1
- 800060a:	701a      	strb	r2, [r3, #0]
+ 80005b6:	200f      	movs	r0, #15
+ 80005b8:	183b      	adds	r3, r7, r0
+ 80005ba:	1dfa      	adds	r2, r7, #7
+ 80005bc:	7812      	ldrb	r2, [r2, #0]
+ 80005be:	210f      	movs	r1, #15
+ 80005c0:	400a      	ands	r2, r1
+ 80005c2:	701a      	strb	r2, [r3, #0]
   uint8_t higherNibble = (column >> 4) & 0x0F; // Shift and mask the higher nibble
- 800060c:	250e      	movs	r5, #14
- 800060e:	197b      	adds	r3, r7, r5
- 8000610:	1dfa      	adds	r2, r7, #7
- 8000612:	7812      	ldrb	r2, [r2, #0]
- 8000614:	0912      	lsrs	r2, r2, #4
- 8000616:	701a      	strb	r2, [r3, #0]
-  uint8_t setColumnLowerAddress[2]  = {SH1106_COMMAND, 0x00 + lowerNibble};
- 8000618:	210c      	movs	r1, #12
- 800061a:	187b      	adds	r3, r7, r1
- 800061c:	2200      	movs	r2, #0
- 800061e:	701a      	strb	r2, [r3, #0]
- 8000620:	187b      	adds	r3, r7, r1
- 8000622:	183a      	adds	r2, r7, r0
- 8000624:	7812      	ldrb	r2, [r2, #0]
- 8000626:	705a      	strb	r2, [r3, #1]
-  uint8_t setColumnHigherAddress[2] = {SH1106_COMMAND, 0x10 + higherNibble};
- 8000628:	2408      	movs	r4, #8
- 800062a:	193b      	adds	r3, r7, r4
- 800062c:	2200      	movs	r2, #0
- 800062e:	701a      	strb	r2, [r3, #0]
- 8000630:	197b      	adds	r3, r7, r5
- 8000632:	781b      	ldrb	r3, [r3, #0]
- 8000634:	3310      	adds	r3, #16
- 8000636:	b2da      	uxtb	r2, r3
- 8000638:	193b      	adds	r3, r7, r4
- 800063a:	705a      	strb	r2, [r3, #1]
+ 80005c4:	250e      	movs	r5, #14
+ 80005c6:	197b      	adds	r3, r7, r5
+ 80005c8:	1dfa      	adds	r2, r7, #7
+ 80005ca:	7812      	ldrb	r2, [r2, #0]
+ 80005cc:	0912      	lsrs	r2, r2, #4
+ 80005ce:	701a      	strb	r2, [r3, #0]
+  uint8_t setColumnLowerAddress[2]  = {SH1106_COMMAND_FLAG, 0x00 + lowerNibble};
+ 80005d0:	210c      	movs	r1, #12
+ 80005d2:	187b      	adds	r3, r7, r1
+ 80005d4:	2200      	movs	r2, #0
+ 80005d6:	701a      	strb	r2, [r3, #0]
+ 80005d8:	187b      	adds	r3, r7, r1
+ 80005da:	183a      	adds	r2, r7, r0
+ 80005dc:	7812      	ldrb	r2, [r2, #0]
+ 80005de:	705a      	strb	r2, [r3, #1]
+  uint8_t setColumnHigherAddress[2] = {SH1106_COMMAND_FLAG, 0x10 + higherNibble};
+ 80005e0:	2408      	movs	r4, #8
+ 80005e2:	193b      	adds	r3, r7, r4
+ 80005e4:	2200      	movs	r2, #0
+ 80005e6:	701a      	strb	r2, [r3, #0]
+ 80005e8:	197b      	adds	r3, r7, r5
+ 80005ea:	781b      	ldrb	r3, [r3, #0]
+ 80005ec:	3310      	adds	r3, #16
+ 80005ee:	b2da      	uxtb	r2, r3
+ 80005f0:	193b      	adds	r3, r7, r4
+ 80005f2:	705a      	strb	r2, [r3, #1]
   SH1106_CALL_HAL_I2C_Transmit(setColumnLowerAddress, 2, 1000);
- 800063c:	23fa      	movs	r3, #250	@ 0xfa
- 800063e:	009a      	lsls	r2, r3, #2
- 8000640:	187b      	adds	r3, r7, r1
- 8000642:	2102      	movs	r1, #2
- 8000644:	0018      	movs	r0, r3
- 8000646:	f7ff fef1 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
+ 80005f4:	23fa      	movs	r3, #250	@ 0xfa
+ 80005f6:	009a      	lsls	r2, r3, #2
+ 80005f8:	187b      	adds	r3, r7, r1
+ 80005fa:	2102      	movs	r1, #2
+ 80005fc:	0018      	movs	r0, r3
+ 80005fe:	f7ff ff15 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
   SH1106_CALL_HAL_I2C_Transmit(setColumnHigherAddress, 2, 1000);
- 800064a:	23fa      	movs	r3, #250	@ 0xfa
- 800064c:	009a      	lsls	r2, r3, #2
- 800064e:	193b      	adds	r3, r7, r4
- 8000650:	2102      	movs	r1, #2
- 8000652:	0018      	movs	r0, r3
- 8000654:	f7ff feea 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
+ 8000602:	23fa      	movs	r3, #250	@ 0xfa
+ 8000604:	009a      	lsls	r2, r3, #2
+ 8000606:	193b      	adds	r3, r7, r4
+ 8000608:	2102      	movs	r1, #2
+ 800060a:	0018      	movs	r0, r3
+ 800060c:	f7ff ff0e 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
 }
- 8000658:	46c0      	nop			@ (mov r8, r8)
- 800065a:	46bd      	mov	sp, r7
- 800065c:	b004      	add	sp, #16
- 800065e:	bdb0      	pop	{r4, r5, r7, pc}
- 8000660:	200000f1 	.word	0x200000f1
+ 8000610:	46c0      	nop			@ (mov r8, r8)
+ 8000612:	46bd      	mov	sp, r7
+ 8000614:	b004      	add	sp, #16
+ 8000616:	bdb0      	pop	{r4, r5, r7, pc}
+ 8000618:	200000f1 	.word	0x200000f1
 
-08000664 <SH1106_Set_Page_And_Column_Address>:
+0800061c <SH1106_Set_Page_And_Column_Address>:
 /**
   * @brief This function sets the page and the column address.
   * @param page:          page number from 0-7
   * @param column:        lower-column number from 0-131
   */
 void SH1106_Set_Page_And_Column_Address(uint8_t page, uint8_t column) {
- 8000664:	b580      	push	{r7, lr}
- 8000666:	b082      	sub	sp, #8
- 8000668:	af00      	add	r7, sp, #0
- 800066a:	0002      	movs	r2, r0
- 800066c:	1dfb      	adds	r3, r7, #7
- 800066e:	701a      	strb	r2, [r3, #0]
- 8000670:	1dbb      	adds	r3, r7, #6
- 8000672:	1c0a      	adds	r2, r1, #0
- 8000674:	701a      	strb	r2, [r3, #0]
+ 800061c:	b580      	push	{r7, lr}
+ 800061e:	b082      	sub	sp, #8
+ 8000620:	af00      	add	r7, sp, #0
+ 8000622:	0002      	movs	r2, r0
+ 8000624:	1dfb      	adds	r3, r7, #7
+ 8000626:	701a      	strb	r2, [r3, #0]
+ 8000628:	1dbb      	adds	r3, r7, #6
+ 800062a:	1c0a      	adds	r2, r1, #0
+ 800062c:	701a      	strb	r2, [r3, #0]
   POS_Y = page;
- 8000676:	4b0b      	ldr	r3, [pc, #44]	@ (80006a4 <SH1106_Set_Page_And_Column_Address+0x40>)
- 8000678:	1dfa      	adds	r2, r7, #7
- 800067a:	7812      	ldrb	r2, [r2, #0]
- 800067c:	701a      	strb	r2, [r3, #0]
+ 800062e:	4b0b      	ldr	r3, [pc, #44]	@ (800065c <SH1106_Set_Page_And_Column_Address+0x40>)
+ 8000630:	1dfa      	adds	r2, r7, #7
+ 8000632:	7812      	ldrb	r2, [r2, #0]
+ 8000634:	701a      	strb	r2, [r3, #0]
   POS_X = column;
- 800067e:	4b0a      	ldr	r3, [pc, #40]	@ (80006a8 <SH1106_Set_Page_And_Column_Address+0x44>)
- 8000680:	1dba      	adds	r2, r7, #6
- 8000682:	7812      	ldrb	r2, [r2, #0]
- 8000684:	701a      	strb	r2, [r3, #0]
+ 8000636:	4b0a      	ldr	r3, [pc, #40]	@ (8000660 <SH1106_Set_Page_And_Column_Address+0x44>)
+ 8000638:	1dba      	adds	r2, r7, #6
+ 800063a:	7812      	ldrb	r2, [r2, #0]
+ 800063c:	701a      	strb	r2, [r3, #0]
   SH1106_Set_Page_Address(page);
- 8000686:	1dfb      	adds	r3, r7, #7
- 8000688:	781b      	ldrb	r3, [r3, #0]
- 800068a:	0018      	movs	r0, r3
- 800068c:	f7ff ff82 	bl	8000594 <SH1106_Set_Page_Address>
+ 800063e:	1dfb      	adds	r3, r7, #7
+ 8000640:	781b      	ldrb	r3, [r3, #0]
+ 8000642:	0018      	movs	r0, r3
+ 8000644:	f7ff ff82 	bl	800054c <SH1106_Set_Page_Address>
   SH1106_Set_Column_Address(column);
- 8000690:	1dbb      	adds	r3, r7, #6
- 8000692:	781b      	ldrb	r3, [r3, #0]
- 8000694:	0018      	movs	r0, r3
- 8000696:	f7ff ffa3 	bl	80005e0 <SH1106_Set_Column_Address>
+ 8000648:	1dbb      	adds	r3, r7, #6
+ 800064a:	781b      	ldrb	r3, [r3, #0]
+ 800064c:	0018      	movs	r0, r3
+ 800064e:	f7ff ffa3 	bl	8000598 <SH1106_Set_Column_Address>
 }
- 800069a:	46c0      	nop			@ (mov r8, r8)
- 800069c:	46bd      	mov	sp, r7
- 800069e:	b002      	add	sp, #8
- 80006a0:	bd80      	pop	{r7, pc}
- 80006a2:	46c0      	nop			@ (mov r8, r8)
- 80006a4:	200000f2 	.word	0x200000f2
- 80006a8:	200000f1 	.word	0x200000f1
+ 8000652:	46c0      	nop			@ (mov r8, r8)
+ 8000654:	46bd      	mov	sp, r7
+ 8000656:	b002      	add	sp, #8
+ 8000658:	bd80      	pop	{r7, pc}
+ 800065a:	46c0      	nop			@ (mov r8, r8)
+ 800065c:	200000f2 	.word	0x200000f2
+ 8000660:	200000f1 	.word	0x200000f1
 
-080006ac <SH1106_Transmit_Data>:
+08000664 <SH1106_Transmit_Buffer>:
+}
 
 /**
-  * @brief This function sends one byte of data to the display.
-  * @param data:          data to transmit
+  * @brief This function sends the screenBuffer to the display.
   */
-void SH1106_Transmit_Data(uint8_t data) {
- 80006ac:	b580      	push	{r7, lr}
- 80006ae:	b084      	sub	sp, #16
- 80006b0:	af00      	add	r7, sp, #0
- 80006b2:	0002      	movs	r2, r0
- 80006b4:	1dfb      	adds	r3, r7, #7
- 80006b6:	701a      	strb	r2, [r3, #0]
-  uint8_t buffer[2];
-    buffer[0] = SH1106_DATA;
- 80006b8:	210c      	movs	r1, #12
- 80006ba:	187b      	adds	r3, r7, r1
- 80006bc:	2240      	movs	r2, #64	@ 0x40
- 80006be:	701a      	strb	r2, [r3, #0]
-    buffer[1] = data;
- 80006c0:	187b      	adds	r3, r7, r1
- 80006c2:	1dfa      	adds	r2, r7, #7
- 80006c4:	7812      	ldrb	r2, [r2, #0]
- 80006c6:	705a      	strb	r2, [r3, #1]
-    SH1106_CALL_HAL_I2C_Transmit(buffer, 2, 1000);
- 80006c8:	23fa      	movs	r3, #250	@ 0xfa
- 80006ca:	009a      	lsls	r2, r3, #2
- 80006cc:	187b      	adds	r3, r7, r1
- 80006ce:	2102      	movs	r1, #2
- 80006d0:	0018      	movs	r0, r3
- 80006d2:	f7ff feab 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
-}
- 80006d6:	46c0      	nop			@ (mov r8, r8)
- 80006d8:	46bd      	mov	sp, r7
- 80006da:	b004      	add	sp, #16
- 80006dc:	bd80      	pop	{r7, pc}
+void SH1106_Transmit_Buffer(void) {
+ 8000664:	b590      	push	{r4, r7, lr}
+ 8000666:	b0a3      	sub	sp, #140	@ 0x8c
+ 8000668:	af00      	add	r7, sp, #0
+  uint8_t transmitBuffer[SH1106_WIDTH + 1];
+  transmitBuffer[0] = SH1106_DATA_FLAG;
+ 800066a:	003b      	movs	r3, r7
+ 800066c:	2240      	movs	r2, #64	@ 0x40
+ 800066e:	701a      	strb	r2, [r3, #0]
 
-080006de <SH1106_Draw_Line>:
+  for(uint8_t page = 0; page < 8; page++){
+ 8000670:	2387      	movs	r3, #135	@ 0x87
+ 8000672:	18fb      	adds	r3, r7, r3
+ 8000674:	2200      	movs	r2, #0
+ 8000676:	701a      	strb	r2, [r3, #0]
+ 8000678:	e020      	b.n	80006bc <SH1106_Transmit_Buffer+0x58>
+    memcpy(&transmitBuffer[1], &screenBuffer[page][0], SH1106_WIDTH);
+ 800067a:	2487      	movs	r4, #135	@ 0x87
+ 800067c:	193b      	adds	r3, r7, r4
+ 800067e:	781a      	ldrb	r2, [r3, #0]
+ 8000680:	0013      	movs	r3, r2
+ 8000682:	015b      	lsls	r3, r3, #5
+ 8000684:	189b      	adds	r3, r3, r2
+ 8000686:	009b      	lsls	r3, r3, #2
+ 8000688:	4a11      	ldr	r2, [pc, #68]	@ (80006d0 <SH1106_Transmit_Buffer+0x6c>)
+ 800068a:	1899      	adds	r1, r3, r2
+ 800068c:	003b      	movs	r3, r7
+ 800068e:	3301      	adds	r3, #1
+ 8000690:	2284      	movs	r2, #132	@ 0x84
+ 8000692:	0018      	movs	r0, r3
+ 8000694:	f002 fe2c 	bl	80032f0 <memcpy>
+
+    SH1106_Set_Page_And_Column_Address(page, 0);
+ 8000698:	193b      	adds	r3, r7, r4
+ 800069a:	781b      	ldrb	r3, [r3, #0]
+ 800069c:	2100      	movs	r1, #0
+ 800069e:	0018      	movs	r0, r3
+ 80006a0:	f7ff ffbc 	bl	800061c <SH1106_Set_Page_And_Column_Address>
+    SH1106_CALL_HAL_I2C_Transmit(transmitBuffer, sizeof(transmitBuffer), 1000);
+ 80006a4:	23fa      	movs	r3, #250	@ 0xfa
+ 80006a6:	009a      	lsls	r2, r3, #2
+ 80006a8:	003b      	movs	r3, r7
+ 80006aa:	2185      	movs	r1, #133	@ 0x85
+ 80006ac:	0018      	movs	r0, r3
+ 80006ae:	f7ff febd 	bl	800042c <SH1106_CALL_HAL_I2C_Transmit>
+  for(uint8_t page = 0; page < 8; page++){
+ 80006b2:	193b      	adds	r3, r7, r4
+ 80006b4:	781a      	ldrb	r2, [r3, #0]
+ 80006b6:	193b      	adds	r3, r7, r4
+ 80006b8:	3201      	adds	r2, #1
+ 80006ba:	701a      	strb	r2, [r3, #0]
+ 80006bc:	2387      	movs	r3, #135	@ 0x87
+ 80006be:	18fb      	adds	r3, r7, r3
+ 80006c0:	781b      	ldrb	r3, [r3, #0]
+ 80006c2:	2b07      	cmp	r3, #7
+ 80006c4:	d9d9      	bls.n	800067a <SH1106_Transmit_Buffer+0x16>
+  }
+}
+ 80006c6:	46c0      	nop			@ (mov r8, r8)
+ 80006c8:	46c0      	nop			@ (mov r8, r8)
+ 80006ca:	46bd      	mov	sp, r7
+ 80006cc:	b023      	add	sp, #140	@ 0x8c
+ 80006ce:	bd90      	pop	{r4, r7, pc}
+ 80006d0:	200000f4 	.word	0x200000f4
+
+080006d4 <SH1106_Draw_Line>:
   * @param xA: xA-position (0-127)
   * @param yA: yA-position (0-63)
   * @param xB: xB-position (0-127)
   * @param yB: yB-position (0-63)
   */
 void SH1106_Draw_Line(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY) {
- 80006de:	b5b0      	push	{r4, r5, r7, lr}
- 80006e0:	b086      	sub	sp, #24
- 80006e2:	af00      	add	r7, sp, #0
- 80006e4:	0005      	movs	r5, r0
- 80006e6:	000c      	movs	r4, r1
- 80006e8:	0010      	movs	r0, r2
- 80006ea:	0019      	movs	r1, r3
- 80006ec:	1dfb      	adds	r3, r7, #7
- 80006ee:	1c2a      	adds	r2, r5, #0
- 80006f0:	701a      	strb	r2, [r3, #0]
- 80006f2:	1dbb      	adds	r3, r7, #6
- 80006f4:	1c22      	adds	r2, r4, #0
- 80006f6:	701a      	strb	r2, [r3, #0]
- 80006f8:	1d7b      	adds	r3, r7, #5
- 80006fa:	1c02      	adds	r2, r0, #0
- 80006fc:	701a      	strb	r2, [r3, #0]
- 80006fe:	1d3b      	adds	r3, r7, #4
- 8000700:	1c0a      	adds	r2, r1, #0
- 8000702:	701a      	strb	r2, [r3, #0]
+ 80006d4:	b5b0      	push	{r4, r5, r7, lr}
+ 80006d6:	b086      	sub	sp, #24
+ 80006d8:	af00      	add	r7, sp, #0
+ 80006da:	0005      	movs	r5, r0
+ 80006dc:	000c      	movs	r4, r1
+ 80006de:	0010      	movs	r0, r2
+ 80006e0:	0019      	movs	r1, r3
+ 80006e2:	1dfb      	adds	r3, r7, #7
+ 80006e4:	1c2a      	adds	r2, r5, #0
+ 80006e6:	701a      	strb	r2, [r3, #0]
+ 80006e8:	1dbb      	adds	r3, r7, #6
+ 80006ea:	1c22      	adds	r2, r4, #0
+ 80006ec:	701a      	strb	r2, [r3, #0]
+ 80006ee:	1d7b      	adds	r3, r7, #5
+ 80006f0:	1c02      	adds	r2, r0, #0
+ 80006f2:	701a      	strb	r2, [r3, #0]
+ 80006f4:	1d3b      	adds	r3, r7, #4
+ 80006f6:	1c0a      	adds	r2, r1, #0
+ 80006f8:	701a      	strb	r2, [r3, #0]
   if(startX >= SH1106_WIDTH || endX >= SH1106_WIDTH || startY >= SH1106_HEIGHT || endY >= SH1106_HEIGHT) {
- 8000704:	1dfb      	adds	r3, r7, #7
+ 80006fa:	1dfb      	adds	r3, r7, #7
+ 80006fc:	781b      	ldrb	r3, [r3, #0]
+ 80006fe:	2b83      	cmp	r3, #131	@ 0x83
+ 8000700:	d900      	bls.n	8000704 <SH1106_Draw_Line+0x30>
+ 8000702:	e0bb      	b.n	800087c <SH1106_Draw_Line+0x1a8>
+ 8000704:	1d7b      	adds	r3, r7, #5
  8000706:	781b      	ldrb	r3, [r3, #0]
  8000708:	2b83      	cmp	r3, #131	@ 0x83
- 800070a:	d900      	bls.n	800070e <SH1106_Draw_Line+0x30>
- 800070c:	e0b5      	b.n	800087a <SH1106_Draw_Line+0x19c>
- 800070e:	1d7b      	adds	r3, r7, #5
+ 800070a:	d900      	bls.n	800070e <SH1106_Draw_Line+0x3a>
+ 800070c:	e0b6      	b.n	800087c <SH1106_Draw_Line+0x1a8>
+ 800070e:	1dbb      	adds	r3, r7, #6
  8000710:	781b      	ldrb	r3, [r3, #0]
- 8000712:	2b83      	cmp	r3, #131	@ 0x83
- 8000714:	d900      	bls.n	8000718 <SH1106_Draw_Line+0x3a>
- 8000716:	e0b0      	b.n	800087a <SH1106_Draw_Line+0x19c>
- 8000718:	1dbb      	adds	r3, r7, #6
+ 8000712:	2b3f      	cmp	r3, #63	@ 0x3f
+ 8000714:	d900      	bls.n	8000718 <SH1106_Draw_Line+0x44>
+ 8000716:	e0b1      	b.n	800087c <SH1106_Draw_Line+0x1a8>
+ 8000718:	1d3b      	adds	r3, r7, #4
  800071a:	781b      	ldrb	r3, [r3, #0]
  800071c:	2b3f      	cmp	r3, #63	@ 0x3f
- 800071e:	d900      	bls.n	8000722 <SH1106_Draw_Line+0x44>
- 8000720:	e0ab      	b.n	800087a <SH1106_Draw_Line+0x19c>
- 8000722:	1d3b      	adds	r3, r7, #4
- 8000724:	781b      	ldrb	r3, [r3, #0]
- 8000726:	2b3f      	cmp	r3, #63	@ 0x3f
- 8000728:	d900      	bls.n	800072c <SH1106_Draw_Line+0x4e>
- 800072a:	e0a6      	b.n	800087a <SH1106_Draw_Line+0x19c>
+ 800071e:	d900      	bls.n	8000722 <SH1106_Draw_Line+0x4e>
+ 8000720:	e0ac      	b.n	800087c <SH1106_Draw_Line+0x1a8>
     return;
   }
 
   int16_t deltaX = abs(endX - startX);
- 800072c:	1d7b      	adds	r3, r7, #5
- 800072e:	781a      	ldrb	r2, [r3, #0]
- 8000730:	1dfb      	adds	r3, r7, #7
- 8000732:	781b      	ldrb	r3, [r3, #0]
- 8000734:	1ad3      	subs	r3, r2, r3
- 8000736:	17d9      	asrs	r1, r3, #31
- 8000738:	185a      	adds	r2, r3, r1
- 800073a:	404a      	eors	r2, r1
- 800073c:	2314      	movs	r3, #20
- 800073e:	18fb      	adds	r3, r7, r3
- 8000740:	801a      	strh	r2, [r3, #0]
+ 8000722:	1d7b      	adds	r3, r7, #5
+ 8000724:	781a      	ldrb	r2, [r3, #0]
+ 8000726:	1dfb      	adds	r3, r7, #7
+ 8000728:	781b      	ldrb	r3, [r3, #0]
+ 800072a:	1ad3      	subs	r3, r2, r3
+ 800072c:	17d9      	asrs	r1, r3, #31
+ 800072e:	185a      	adds	r2, r3, r1
+ 8000730:	404a      	eors	r2, r1
+ 8000732:	2314      	movs	r3, #20
+ 8000734:	18fb      	adds	r3, r7, r3
+ 8000736:	801a      	strh	r2, [r3, #0]
   int16_t deltaY = abs(endY - startY);
- 8000742:	1d3b      	adds	r3, r7, #4
- 8000744:	781a      	ldrb	r2, [r3, #0]
- 8000746:	1dbb      	adds	r3, r7, #6
- 8000748:	781b      	ldrb	r3, [r3, #0]
- 800074a:	1ad3      	subs	r3, r2, r3
- 800074c:	17d9      	asrs	r1, r3, #31
- 800074e:	185a      	adds	r2, r3, r1
- 8000750:	404a      	eors	r2, r1
- 8000752:	2312      	movs	r3, #18
- 8000754:	18fb      	adds	r3, r7, r3
- 8000756:	801a      	strh	r2, [r3, #0]
+ 8000738:	1d3b      	adds	r3, r7, #4
+ 800073a:	781a      	ldrb	r2, [r3, #0]
+ 800073c:	1dbb      	adds	r3, r7, #6
+ 800073e:	781b      	ldrb	r3, [r3, #0]
+ 8000740:	1ad3      	subs	r3, r2, r3
+ 8000742:	17d9      	asrs	r1, r3, #31
+ 8000744:	185a      	adds	r2, r3, r1
+ 8000746:	404a      	eors	r2, r1
+ 8000748:	2312      	movs	r3, #18
+ 800074a:	18fb      	adds	r3, r7, r3
+ 800074c:	801a      	strh	r2, [r3, #0]
   int16_t stepX = (startX < endX) ? 1 : -1;
- 8000758:	1dfa      	adds	r2, r7, #7
- 800075a:	1d7b      	adds	r3, r7, #5
- 800075c:	7812      	ldrb	r2, [r2, #0]
- 800075e:	781b      	ldrb	r3, [r3, #0]
- 8000760:	429a      	cmp	r2, r3
- 8000762:	d201      	bcs.n	8000768 <SH1106_Draw_Line+0x8a>
- 8000764:	2201      	movs	r2, #1
- 8000766:	e001      	b.n	800076c <SH1106_Draw_Line+0x8e>
- 8000768:	2301      	movs	r3, #1
- 800076a:	425a      	negs	r2, r3
- 800076c:	2310      	movs	r3, #16
- 800076e:	18fb      	adds	r3, r7, r3
- 8000770:	801a      	strh	r2, [r3, #0]
+ 800074e:	1dfa      	adds	r2, r7, #7
+ 8000750:	1d7b      	adds	r3, r7, #5
+ 8000752:	7812      	ldrb	r2, [r2, #0]
+ 8000754:	781b      	ldrb	r3, [r3, #0]
+ 8000756:	429a      	cmp	r2, r3
+ 8000758:	d201      	bcs.n	800075e <SH1106_Draw_Line+0x8a>
+ 800075a:	2201      	movs	r2, #1
+ 800075c:	e001      	b.n	8000762 <SH1106_Draw_Line+0x8e>
+ 800075e:	2301      	movs	r3, #1
+ 8000760:	425a      	negs	r2, r3
+ 8000762:	2310      	movs	r3, #16
+ 8000764:	18fb      	adds	r3, r7, r3
+ 8000766:	801a      	strh	r2, [r3, #0]
   int16_t stepY = (startY < endY) ? 1 : -1;
- 8000772:	1dba      	adds	r2, r7, #6
- 8000774:	1d3b      	adds	r3, r7, #4
- 8000776:	7812      	ldrb	r2, [r2, #0]
- 8000778:	781b      	ldrb	r3, [r3, #0]
- 800077a:	429a      	cmp	r2, r3
- 800077c:	d201      	bcs.n	8000782 <SH1106_Draw_Line+0xa4>
- 800077e:	2201      	movs	r2, #1
- 8000780:	e001      	b.n	8000786 <SH1106_Draw_Line+0xa8>
- 8000782:	2301      	movs	r3, #1
- 8000784:	425a      	negs	r2, r3
- 8000786:	230e      	movs	r3, #14
- 8000788:	18fb      	adds	r3, r7, r3
- 800078a:	801a      	strh	r2, [r3, #0]
+ 8000768:	1dba      	adds	r2, r7, #6
+ 800076a:	1d3b      	adds	r3, r7, #4
+ 800076c:	7812      	ldrb	r2, [r2, #0]
+ 800076e:	781b      	ldrb	r3, [r3, #0]
+ 8000770:	429a      	cmp	r2, r3
+ 8000772:	d201      	bcs.n	8000778 <SH1106_Draw_Line+0xa4>
+ 8000774:	2201      	movs	r2, #1
+ 8000776:	e001      	b.n	800077c <SH1106_Draw_Line+0xa8>
+ 8000778:	2301      	movs	r3, #1
+ 800077a:	425a      	negs	r2, r3
+ 800077c:	230e      	movs	r3, #14
+ 800077e:	18fb      	adds	r3, r7, r3
+ 8000780:	801a      	strh	r2, [r3, #0]
   int16_t error = deltaX - deltaY;
- 800078c:	2314      	movs	r3, #20
- 800078e:	18fb      	adds	r3, r7, r3
- 8000790:	881a      	ldrh	r2, [r3, #0]
- 8000792:	2312      	movs	r3, #18
+ 8000782:	2314      	movs	r3, #20
+ 8000784:	18fb      	adds	r3, r7, r3
+ 8000786:	881a      	ldrh	r2, [r3, #0]
+ 8000788:	2312      	movs	r3, #18
+ 800078a:	18fb      	adds	r3, r7, r3
+ 800078c:	881b      	ldrh	r3, [r3, #0]
+ 800078e:	1ad3      	subs	r3, r2, r3
+ 8000790:	b29a      	uxth	r2, r3
+ 8000792:	2316      	movs	r3, #22
  8000794:	18fb      	adds	r3, r7, r3
- 8000796:	881b      	ldrh	r3, [r3, #0]
- 8000798:	1ad3      	subs	r3, r2, r3
- 800079a:	b29a      	uxth	r2, r3
- 800079c:	2316      	movs	r3, #22
- 800079e:	18fb      	adds	r3, r7, r3
- 80007a0:	801a      	strh	r2, [r3, #0]
+ 8000796:	801a      	strh	r2, [r3, #0]
 
   while(1) {
     // Set pixel at (xA, xY)
     uint8_t page = startY / 8;
- 80007a2:	210d      	movs	r1, #13
- 80007a4:	187b      	adds	r3, r7, r1
- 80007a6:	1dba      	adds	r2, r7, #6
- 80007a8:	7812      	ldrb	r2, [r2, #0]
- 80007aa:	08d2      	lsrs	r2, r2, #3
- 80007ac:	701a      	strb	r2, [r3, #0]
+ 8000798:	210d      	movs	r1, #13
+ 800079a:	187b      	adds	r3, r7, r1
+ 800079c:	1dba      	adds	r2, r7, #6
+ 800079e:	7812      	ldrb	r2, [r2, #0]
+ 80007a0:	08d2      	lsrs	r2, r2, #3
+ 80007a2:	701a      	strb	r2, [r3, #0]
     uint8_t bit = (1 << (startY % 8));
- 80007ae:	1dbb      	adds	r3, r7, #6
- 80007b0:	781b      	ldrb	r3, [r3, #0]
- 80007b2:	2207      	movs	r2, #7
- 80007b4:	4013      	ands	r3, r2
- 80007b6:	2201      	movs	r2, #1
- 80007b8:	409a      	lsls	r2, r3
- 80007ba:	240c      	movs	r4, #12
- 80007bc:	193b      	adds	r3, r7, r4
- 80007be:	701a      	strb	r2, [r3, #0]
-    uint8_t column = startX;
- 80007c0:	200b      	movs	r0, #11
- 80007c2:	183b      	adds	r3, r7, r0
- 80007c4:	1dfa      	adds	r2, r7, #7
- 80007c6:	7812      	ldrb	r2, [r2, #0]
- 80007c8:	701a      	strb	r2, [r3, #0]
-    SH1106_Set_Cursor(page, column);
- 80007ca:	183b      	adds	r3, r7, r0
- 80007cc:	781a      	ldrb	r2, [r3, #0]
- 80007ce:	187b      	adds	r3, r7, r1
- 80007d0:	781b      	ldrb	r3, [r3, #0]
- 80007d2:	0011      	movs	r1, r2
- 80007d4:	0018      	movs	r0, r3
- 80007d6:	f7ff febb 	bl	8000550 <SH1106_Set_Cursor>
-    SH1106_Transmit_Data(bit);
- 80007da:	193b      	adds	r3, r7, r4
- 80007dc:	781b      	ldrb	r3, [r3, #0]
- 80007de:	0018      	movs	r0, r3
- 80007e0:	f7ff ff64 	bl	80006ac <SH1106_Transmit_Data>
+ 80007a4:	1dbb      	adds	r3, r7, #6
+ 80007a6:	781b      	ldrb	r3, [r3, #0]
+ 80007a8:	2207      	movs	r2, #7
+ 80007aa:	4013      	ands	r3, r2
+ 80007ac:	2201      	movs	r2, #1
+ 80007ae:	409a      	lsls	r2, r3
+ 80007b0:	250c      	movs	r5, #12
+ 80007b2:	197b      	adds	r3, r7, r5
+ 80007b4:	701a      	strb	r2, [r3, #0]
+    screenBuffer[page][startX] |= bit;
+ 80007b6:	000c      	movs	r4, r1
+ 80007b8:	187b      	adds	r3, r7, r1
+ 80007ba:	781a      	ldrb	r2, [r3, #0]
+ 80007bc:	1dfb      	adds	r3, r7, #7
+ 80007be:	7819      	ldrb	r1, [r3, #0]
+ 80007c0:	4830      	ldr	r0, [pc, #192]	@ (8000884 <SH1106_Draw_Line+0x1b0>)
+ 80007c2:	0013      	movs	r3, r2
+ 80007c4:	015b      	lsls	r3, r3, #5
+ 80007c6:	189b      	adds	r3, r3, r2
+ 80007c8:	009b      	lsls	r3, r3, #2
+ 80007ca:	18c3      	adds	r3, r0, r3
+ 80007cc:	5c58      	ldrb	r0, [r3, r1]
+ 80007ce:	193b      	adds	r3, r7, r4
+ 80007d0:	781a      	ldrb	r2, [r3, #0]
+ 80007d2:	1dfb      	adds	r3, r7, #7
+ 80007d4:	7819      	ldrb	r1, [r3, #0]
+ 80007d6:	197b      	adds	r3, r7, r5
+ 80007d8:	781b      	ldrb	r3, [r3, #0]
+ 80007da:	4303      	orrs	r3, r0
+ 80007dc:	b2dc      	uxtb	r4, r3
+ 80007de:	4829      	ldr	r0, [pc, #164]	@ (8000884 <SH1106_Draw_Line+0x1b0>)
+ 80007e0:	0013      	movs	r3, r2
+ 80007e2:	015b      	lsls	r3, r3, #5
+ 80007e4:	189b      	adds	r3, r3, r2
+ 80007e6:	009b      	lsls	r3, r3, #2
+ 80007e8:	18c3      	adds	r3, r0, r3
+ 80007ea:	1c22      	adds	r2, r4, #0
+ 80007ec:	545a      	strb	r2, [r3, r1]
 
     // Break when reaching endpoint
     if(startX == endX && startY == endY) {
- 80007e4:	1dfa      	adds	r2, r7, #7
- 80007e6:	1d7b      	adds	r3, r7, #5
- 80007e8:	7812      	ldrb	r2, [r2, #0]
- 80007ea:	781b      	ldrb	r3, [r3, #0]
- 80007ec:	429a      	cmp	r2, r3
- 80007ee:	d105      	bne.n	80007fc <SH1106_Draw_Line+0x11e>
- 80007f0:	1dba      	adds	r2, r7, #6
- 80007f2:	1d3b      	adds	r3, r7, #4
- 80007f4:	7812      	ldrb	r2, [r2, #0]
- 80007f6:	781b      	ldrb	r3, [r3, #0]
- 80007f8:	429a      	cmp	r2, r3
- 80007fa:	d040      	beq.n	800087e <SH1106_Draw_Line+0x1a0>
+ 80007ee:	1dfa      	adds	r2, r7, #7
+ 80007f0:	1d7b      	adds	r3, r7, #5
+ 80007f2:	7812      	ldrb	r2, [r2, #0]
+ 80007f4:	781b      	ldrb	r3, [r3, #0]
+ 80007f6:	429a      	cmp	r2, r3
+ 80007f8:	d105      	bne.n	8000806 <SH1106_Draw_Line+0x132>
+ 80007fa:	1dba      	adds	r2, r7, #6
+ 80007fc:	1d3b      	adds	r3, r7, #4
+ 80007fe:	7812      	ldrb	r2, [r2, #0]
+ 8000800:	781b      	ldrb	r3, [r3, #0]
+ 8000802:	429a      	cmp	r2, r3
+ 8000804:	d036      	beq.n	8000874 <SH1106_Draw_Line+0x1a0>
       break;
     }
 
     int16_t doubleError = 2 * error;
- 80007fc:	2116      	movs	r1, #22
- 80007fe:	187b      	adds	r3, r7, r1
- 8000800:	881b      	ldrh	r3, [r3, #0]
- 8000802:	18db      	adds	r3, r3, r3
- 8000804:	b29a      	uxth	r2, r3
- 8000806:	2008      	movs	r0, #8
- 8000808:	183b      	adds	r3, r7, r0
- 800080a:	801a      	strh	r2, [r3, #0]
+ 8000806:	2116      	movs	r1, #22
+ 8000808:	187b      	adds	r3, r7, r1
+ 800080a:	881b      	ldrh	r3, [r3, #0]
+ 800080c:	18db      	adds	r3, r3, r3
+ 800080e:	b29a      	uxth	r2, r3
+ 8000810:	200a      	movs	r0, #10
+ 8000812:	183b      	adds	r3, r7, r0
+ 8000814:	801a      	strh	r2, [r3, #0]
     if(doubleError > deltaY) {
- 800080c:	183a      	adds	r2, r7, r0
- 800080e:	2012      	movs	r0, #18
- 8000810:	183b      	adds	r3, r7, r0
- 8000812:	2400      	movs	r4, #0
- 8000814:	5f12      	ldrsh	r2, [r2, r4]
- 8000816:	2400      	movs	r4, #0
- 8000818:	5f1b      	ldrsh	r3, [r3, r4]
- 800081a:	429a      	cmp	r2, r3
- 800081c:	dd10      	ble.n	8000840 <SH1106_Draw_Line+0x162>
+ 8000816:	183a      	adds	r2, r7, r0
+ 8000818:	2012      	movs	r0, #18
+ 800081a:	183b      	adds	r3, r7, r0
+ 800081c:	2400      	movs	r4, #0
+ 800081e:	5f12      	ldrsh	r2, [r2, r4]
+ 8000820:	2400      	movs	r4, #0
+ 8000822:	5f1b      	ldrsh	r3, [r3, r4]
+ 8000824:	429a      	cmp	r2, r3
+ 8000826:	dd11      	ble.n	800084c <SH1106_Draw_Line+0x178>
       error -= deltaY;
- 800081e:	187b      	adds	r3, r7, r1
- 8000820:	881a      	ldrh	r2, [r3, #0]
- 8000822:	183b      	adds	r3, r7, r0
- 8000824:	881b      	ldrh	r3, [r3, #0]
- 8000826:	1ad3      	subs	r3, r2, r3
- 8000828:	b29a      	uxth	r2, r3
- 800082a:	187b      	adds	r3, r7, r1
- 800082c:	801a      	strh	r2, [r3, #0]
+ 8000828:	187b      	adds	r3, r7, r1
+ 800082a:	881a      	ldrh	r2, [r3, #0]
+ 800082c:	183b      	adds	r3, r7, r0
+ 800082e:	881b      	ldrh	r3, [r3, #0]
+ 8000830:	1ad3      	subs	r3, r2, r3
+ 8000832:	b29a      	uxth	r2, r3
+ 8000834:	187b      	adds	r3, r7, r1
+ 8000836:	801a      	strh	r2, [r3, #0]
       startX += stepX;
- 800082e:	2310      	movs	r3, #16
- 8000830:	18fb      	adds	r3, r7, r3
- 8000832:	881b      	ldrh	r3, [r3, #0]
- 8000834:	b2d9      	uxtb	r1, r3
- 8000836:	1dfb      	adds	r3, r7, #7
- 8000838:	1dfa      	adds	r2, r7, #7
- 800083a:	7812      	ldrb	r2, [r2, #0]
- 800083c:	188a      	adds	r2, r1, r2
- 800083e:	701a      	strb	r2, [r3, #0]
-    }
-    if(doubleError < deltaX) {
- 8000840:	2308      	movs	r3, #8
- 8000842:	18fa      	adds	r2, r7, r3
- 8000844:	2114      	movs	r1, #20
- 8000846:	187b      	adds	r3, r7, r1
- 8000848:	2000      	movs	r0, #0
- 800084a:	5e12      	ldrsh	r2, [r2, r0]
- 800084c:	2000      	movs	r0, #0
- 800084e:	5e1b      	ldrsh	r3, [r3, r0]
- 8000850:	429a      	cmp	r2, r3
- 8000852:	daa6      	bge.n	80007a2 <SH1106_Draw_Line+0xc4>
+ 8000838:	2310      	movs	r3, #16
+ 800083a:	18fb      	adds	r3, r7, r3
+ 800083c:	881b      	ldrh	r3, [r3, #0]
+ 800083e:	b2d9      	uxtb	r1, r3
+ 8000840:	1dfb      	adds	r3, r7, #7
+ 8000842:	1dfa      	adds	r2, r7, #7
+ 8000844:	7812      	ldrb	r2, [r2, #0]
+ 8000846:	188a      	adds	r2, r1, r2
+ 8000848:	701a      	strb	r2, [r3, #0]
+ 800084a:	e7a5      	b.n	8000798 <SH1106_Draw_Line+0xc4>
+    } else {
       error += deltaX;
- 8000854:	2016      	movs	r0, #22
- 8000856:	183b      	adds	r3, r7, r0
- 8000858:	881a      	ldrh	r2, [r3, #0]
- 800085a:	187b      	adds	r3, r7, r1
- 800085c:	881b      	ldrh	r3, [r3, #0]
- 800085e:	18d3      	adds	r3, r2, r3
- 8000860:	b29a      	uxth	r2, r3
- 8000862:	183b      	adds	r3, r7, r0
- 8000864:	801a      	strh	r2, [r3, #0]
+ 800084c:	2116      	movs	r1, #22
+ 800084e:	187b      	adds	r3, r7, r1
+ 8000850:	881a      	ldrh	r2, [r3, #0]
+ 8000852:	2314      	movs	r3, #20
+ 8000854:	18fb      	adds	r3, r7, r3
+ 8000856:	881b      	ldrh	r3, [r3, #0]
+ 8000858:	18d3      	adds	r3, r2, r3
+ 800085a:	b29a      	uxth	r2, r3
+ 800085c:	187b      	adds	r3, r7, r1
+ 800085e:	801a      	strh	r2, [r3, #0]
       startY += stepY;
- 8000866:	230e      	movs	r3, #14
- 8000868:	18fb      	adds	r3, r7, r3
- 800086a:	881b      	ldrh	r3, [r3, #0]
- 800086c:	b2d9      	uxtb	r1, r3
- 800086e:	1dbb      	adds	r3, r7, #6
- 8000870:	1dba      	adds	r2, r7, #6
- 8000872:	7812      	ldrb	r2, [r2, #0]
- 8000874:	188a      	adds	r2, r1, r2
- 8000876:	701a      	strb	r2, [r3, #0]
+ 8000860:	230e      	movs	r3, #14
+ 8000862:	18fb      	adds	r3, r7, r3
+ 8000864:	881b      	ldrh	r3, [r3, #0]
+ 8000866:	b2d9      	uxtb	r1, r3
+ 8000868:	1dbb      	adds	r3, r7, #6
+ 800086a:	1dba      	adds	r2, r7, #6
+ 800086c:	7812      	ldrb	r2, [r2, #0]
+ 800086e:	188a      	adds	r2, r1, r2
+ 8000870:	701a      	strb	r2, [r3, #0]
   while(1) {
- 8000878:	e793      	b.n	80007a2 <SH1106_Draw_Line+0xc4>
-    return;
- 800087a:	46c0      	nop			@ (mov r8, r8)
- 800087c:	e000      	b.n	8000880 <SH1106_Draw_Line+0x1a2>
+ 8000872:	e791      	b.n	8000798 <SH1106_Draw_Line+0xc4>
       break;
- 800087e:	46c0      	nop			@ (mov r8, r8)
+ 8000874:	46c0      	nop			@ (mov r8, r8)
     }
-
   }
+  SH1106_Transmit_Buffer();
+ 8000876:	f7ff fef5 	bl	8000664 <SH1106_Transmit_Buffer>
+ 800087a:	e000      	b.n	800087e <SH1106_Draw_Line+0x1aa>
+    return;
+ 800087c:	46c0      	nop			@ (mov r8, r8)
 }
- 8000880:	46bd      	mov	sp, r7
- 8000882:	b006      	add	sp, #24
- 8000884:	bdb0      	pop	{r4, r5, r7, pc}
-	...
+ 800087e:	46bd      	mov	sp, r7
+ 8000880:	b006      	add	sp, #24
+ 8000882:	bdb0      	pop	{r4, r5, r7, pc}
+ 8000884:	200000f4 	.word	0x200000f4
 
 08000888 <HAL_MspInit>:
 /* USER CODE END 0 */
@@ -1795,7 +1785,7 @@ void SystemInit(void)
  8000a90:	20002000 	.word	0x20002000
  8000a94:	20000000 	.word	0x20000000
  8000a98:	20000038 	.word	0x20000038
- 8000a9c:	08003340 	.word	0x08003340
+ 8000a9c:	08003354 	.word	0x08003354
  8000aa0:	20000038 	.word	0x20000038
  8000aa4:	20000518 	.word	0x20000518
 
@@ -6534,7 +6524,7 @@ void SystemInit(void)
  800303c:	40021000 	.word	0x40021000
  8003040:	00001388 	.word	0x00001388
  8003044:	fffff8ff 	.word	0xfffff8ff
- 8003048:	08003308 	.word	0x08003308
+ 8003048:	0800331c 	.word	0x0800331c
  800304c:	2000002c 	.word	0x2000002c
 
 08003050 <HAL_RCC_GetSysClockFreq>:
@@ -6617,8 +6607,8 @@ void SystemInit(void)
  80030ea:	46c0      	nop			@ (mov r8, r8)
  80030ec:	40021000 	.word	0x40021000
  80030f0:	007a1200 	.word	0x007a1200
- 80030f4:	08003318 	.word	0x08003318
- 80030f8:	08003328 	.word	0x08003328
+ 80030f4:	0800332c 	.word	0x0800332c
+ 80030f8:	0800333c 	.word	0x0800333c
 
 080030fc <HAL_RCCEx_PeriphCLKConfig>:
  80030fc:	b580      	push	{r7, lr}
@@ -6838,7 +6828,7 @@ void SystemInit(void)
  80032b4:	42a6      	cmp	r6, r4
  80032b6:	d109      	bne.n	80032cc <__libc_init_array+0x24>
  80032b8:	2600      	movs	r6, #0
- 80032ba:	f000 f819 	bl	80032f0 <_init>
+ 80032ba:	f000 f823 	bl	8003304 <_init>
  80032be:	4c0a      	ldr	r4, [pc, #40]	@ (80032e8 <__libc_init_array+0x40>)
  80032c0:	4d0a      	ldr	r5, [pc, #40]	@ (80032ec <__libc_init_array+0x44>)
  80032c2:	1b64      	subs	r4, r4, r5
@@ -6856,23 +6846,35 @@ void SystemInit(void)
  80032da:	4798      	blx	r3
  80032dc:	3601      	adds	r6, #1
  80032de:	e7f2      	b.n	80032c6 <__libc_init_array+0x1e>
- 80032e0:	08003338 	.word	0x08003338
- 80032e4:	08003338 	.word	0x08003338
- 80032e8:	0800333c 	.word	0x0800333c
- 80032ec:	08003338 	.word	0x08003338
+ 80032e0:	0800334c 	.word	0x0800334c
+ 80032e4:	0800334c 	.word	0x0800334c
+ 80032e8:	08003350 	.word	0x08003350
+ 80032ec:	0800334c 	.word	0x0800334c
 
-080032f0 <_init>:
- 80032f0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 80032f2:	46c0      	nop			@ (mov r8, r8)
- 80032f4:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 80032f6:	bc08      	pop	{r3}
- 80032f8:	469e      	mov	lr, r3
- 80032fa:	4770      	bx	lr
+080032f0 <memcpy>:
+ 80032f0:	2300      	movs	r3, #0
+ 80032f2:	b510      	push	{r4, lr}
+ 80032f4:	429a      	cmp	r2, r3
+ 80032f6:	d100      	bne.n	80032fa <memcpy+0xa>
+ 80032f8:	bd10      	pop	{r4, pc}
+ 80032fa:	5ccc      	ldrb	r4, [r1, r3]
+ 80032fc:	54c4      	strb	r4, [r0, r3]
+ 80032fe:	3301      	adds	r3, #1
+ 8003300:	e7f8      	b.n	80032f4 <memcpy+0x4>
+	...
 
-080032fc <_fini>:
- 80032fc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 80032fe:	46c0      	nop			@ (mov r8, r8)
- 8003300:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8003302:	bc08      	pop	{r3}
- 8003304:	469e      	mov	lr, r3
- 8003306:	4770      	bx	lr
+08003304 <_init>:
+ 8003304:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8003306:	46c0      	nop			@ (mov r8, r8)
+ 8003308:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800330a:	bc08      	pop	{r3}
+ 800330c:	469e      	mov	lr, r3
+ 800330e:	4770      	bx	lr
+
+08003310 <_fini>:
+ 8003310:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8003312:	46c0      	nop			@ (mov r8, r8)
+ 8003314:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8003316:	bc08      	pop	{r3}
+ 8003318:	469e      	mov	lr, r3
+ 800331a:	4770      	bx	lr

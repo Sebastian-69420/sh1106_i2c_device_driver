@@ -18,8 +18,8 @@ extern "C" {
 #define SH1106_HEIGHT 64
 #define SH1106_NUM_PAGES 8
 
-#define SH1106_COMMAND 0x00
-#define SH1106_DATA 0x40
+#define SH1106_COMMAND_FLAG 0x00
+#define SH1106_DATA_FLAG 0x40
 
 #define DISPLAY_OFF 0xAE
 #define DISPLAY_ON_NORMAL_MODE 0xAF
@@ -67,18 +67,19 @@ extern uint8_t POS_Y;
 /* Functions -----------------------------------------------------------------*/
 void SH1106_Init(I2C_HandleTypeDef *hi2c, uint8_t deviceAddress);
 
-void SH1106_Display_On();
-void SH1106_Display_All_On();
-void SH1106_Display_Off();
-void SH1106_Display_Clear();
+void SH1106_Display_On(void);
+void SH1106_Display_All_On(void);
+void SH1106_Display_Off(void);
+void SH1106_Display_Clear(void);
 
 void SH1106_Set_Cursor(uint8_t page, uint8_t column);
 void SH1106_Set_Page_Address(uint8_t page);
 void SH1106_Set_Column_Address(uint8_t column);
 void SH1106_Set_Page_And_Column_Address(uint8_t page, uint8_t column);
 
-void SH1106_Transmit_Data(uint8_t data);
+void SH1106_Transmit_DataByte(uint8_t data);
 void SH1106_Transmit_Command(uint8_t command);
+void SH1106_Transmit_Buffer(void);
 
 void SH1106_Display_Character(uint8_t character);
 void SH1106_Print_Line(char* string);

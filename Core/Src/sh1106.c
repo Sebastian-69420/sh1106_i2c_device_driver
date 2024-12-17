@@ -8,27 +8,27 @@ uint8_t POS_Y;
 
 const size_t LINE_WRAP_INTERVAL = 18;
 
-uint8_t screenBuffer[SH1106_WIDTH * (SH1106_HEIGHT / SH1106_NUM_PAGES)];
+uint8_t screenBuffer[SH1106_HEIGHT / SH1106_NUM_PAGES][SH1106_WIDTH];
 
 uint8_t dynamicInitDataArray[] = {
-  SH1106_COMMAND, DISPLAY_OFF,
-  SH1106_COMMAND, SET_MULTIPLEX_RATIO, 0x3F,                     // Reset Value: 0x3F / xx11 1111
-  SH1106_COMMAND, SET_DISPLAY_OFFSET, 0x00,                      // No Offset
-  SH1106_COMMAND, SET_DISPLAY_START_LINE,
-  SH1106_COMMAND, SET_SEGMENT_REMAP_SEG0_131,
-  SH1106_COMMAND, SET_COM_OUTPUT_SCAN_DIRECTION_NORMAL_MODE,
-  SH1106_COMMAND, SET_COM_PINS_HARDWARE_CONFIGURATION, 0x12,     // 0x02 or 0x12 (POR)
+  SH1106_COMMAND_FLAG, DISPLAY_OFF,
+  SH1106_COMMAND_FLAG, SET_MULTIPLEX_RATIO, 0x3F,                     // Reset Value: 0x3F / xx11 1111
+  SH1106_COMMAND_FLAG, SET_DISPLAY_OFFSET, 0x00,                      // No Offset
+  SH1106_COMMAND_FLAG, SET_DISPLAY_START_LINE,
+  SH1106_COMMAND_FLAG, SET_SEGMENT_REMAP_SEG0_131,
+  SH1106_COMMAND_FLAG, SET_COM_OUTPUT_SCAN_DIRECTION_NORMAL_MODE,
+  SH1106_COMMAND_FLAG, SET_COM_PINS_HARDWARE_CONFIGURATION, 0x12,     // 0x02 or 0x12 (POR)
 
-  SH1106_COMMAND, SET_CONTRAST_CONTROL, 0x7F,
-  SH1106_COMMAND, SET_DISPLAY_CLOCK_DIVIDE_RATIO, 0xA0,          // Suggested Ratio: 0x80
-  SH1106_COMMAND, CHARGE_PUMP_SETTING, 0x14,                     // Enable: 0x14, Disable: 0x10
+  SH1106_COMMAND_FLAG, SET_CONTRAST_CONTROL, 0x7F,
+  SH1106_COMMAND_FLAG, SET_DISPLAY_CLOCK_DIVIDE_RATIO, 0xA0,          // Suggested Ratio: 0x80
+  SH1106_COMMAND_FLAG, CHARGE_PUMP_SETTING, 0x14,                     // Enable: 0x14, Disable: 0x10
 
-  SH1106_COMMAND, SET_MEMORY_ADDRESSING_MODE, 0x00,              // Horizontal: 0x00, Vertical: 0x01, Page: 0x02
-  SH1106_COMMAND, SET_PRECHARGE_PERIOD, 0x22,
-  SH1106_COMMAND, SET_VCOMH_DESELECT_LEVEL, 0x20,
-  SH1106_COMMAND, SET_DISPLAY_NORMAL,
-  SH1106_COMMAND, DISPLAY_ON_RAM_CONTENT,
-  SH1106_COMMAND, DEACTIVATE_SCROLL
+  SH1106_COMMAND_FLAG, SET_MEMORY_ADDRESSING_MODE, 0x00,              // Horizontal: 0x00, Vertical: 0x01, Page: 0x02
+  SH1106_COMMAND_FLAG, SET_PRECHARGE_PERIOD, 0x22,
+  SH1106_COMMAND_FLAG, SET_VCOMH_DESELECT_LEVEL, 0x20,
+  SH1106_COMMAND_FLAG, SET_DISPLAY_NORMAL,
+  SH1106_COMMAND_FLAG, DISPLAY_ON_RAM_CONTENT,
+  SH1106_COMMAND_FLAG, DEACTIVATE_SCROLL
 };
 
 /**
@@ -57,10 +57,10 @@ void SH1106_Init(I2C_HandleTypeDef *hi2c, uint8_t deviceAddress) {
 /**
   * @brief This function turns the display on and displays the RAM content.
   */
-void SH1106_Display_On() {
+void SH1106_Display_On(void) {
   uint8_t data[4] = {
-    SH1106_COMMAND, DISPLAY_ON_RAM_CONTENT,
-    SH1106_COMMAND, DISPLAY_ON_NORMAL_MODE
+    SH1106_COMMAND_FLAG, DISPLAY_ON_RAM_CONTENT,
+    SH1106_COMMAND_FLAG, DISPLAY_ON_NORMAL_MODE
   };
   SH1106_CALL_HAL_I2C_Transmit(data, 4, 1000);
 }
@@ -68,10 +68,10 @@ void SH1106_Display_On() {
 /**
   * @brief This function turns the display on and displays all white pixels.
   */
-void SH1106_Display_All_On() {
+void SH1106_Display_All_On(void) {
   uint8_t data[4] = {
-    SH1106_COMMAND, DISPLAY_ON_RAM_IGNORE,
-    SH1106_COMMAND, DISPLAY_ON_NORMAL_MODE
+    SH1106_COMMAND_FLAG, DISPLAY_ON_RAM_IGNORE,
+    SH1106_COMMAND_FLAG, DISPLAY_ON_NORMAL_MODE
   };
   SH1106_CALL_HAL_I2C_Transmit(data, 4, 1000);
 }
@@ -79,23 +79,21 @@ void SH1106_Display_All_On() {
 /**
   * @brief This function turns the display off.
   */
-void SH1106_Display_Off() {
-  uint8_t data[2] = {SH1106_COMMAND, DISPLAY_OFF};
+void SH1106_Display_Off(void) {
+  uint8_t data[2] = {SH1106_COMMAND_FLAG, DISPLAY_OFF};
   SH1106_CALL_HAL_I2C_Transmit(data, 2, 1000);
 }
 
 /**
   * @brief This function clears the display ram to all zeros.
   */
-void SH1106_Display_Clear() {
+void SH1106_Display_Clear(void) {
   uint8_t pixelOff[SH1106_WIDTH + 1];
-  pixelOff[0] = SH1106_DATA;
+  pixelOff[0] = SH1106_DATA_FLAG;
   memset(&pixelOff[1], 0x00, SH1106_WIDTH);
 
   for(uint8_t page = 0; page < 8; page++){
-    SH1106_Set_Page_Address(page);
-    SH1106_Set_Column_Address(0);
-
+    SH1106_Set_Page_And_Column_Address(page, 0);
     SH1106_CALL_HAL_I2C_Transmit(pixelOff, sizeof(pixelOff), 1000);
   }
 }
@@ -120,7 +118,7 @@ void SH1106_Set_Page_Address(uint8_t page) {
   if(page > 7) {
     return; // Check if page is in bounds.
   }
-  uint8_t setPageAddress[2] = {SH1106_COMMAND, SET_PAGE_ADDRESS_FOR_PAGE_ADDRESSING_MODE + page};
+  uint8_t setPageAddress[2] = {SH1106_COMMAND_FLAG, SET_PAGE_ADDRESS_FOR_PAGE_ADDRESSING_MODE + page};
   SH1106_CALL_HAL_I2C_Transmit(setPageAddress, 2, 1000);
 }
 
@@ -133,8 +131,8 @@ void SH1106_Set_Column_Address(uint8_t column) {
   column = column + 2; // Add 2 to account for bytes in ram without pixels.
   uint8_t lowerNibble  = column & 0x0F; // Mask the lower nibble
   uint8_t higherNibble = (column >> 4) & 0x0F; // Shift and mask the higher nibble
-  uint8_t setColumnLowerAddress[2]  = {SH1106_COMMAND, 0x00 + lowerNibble};
-  uint8_t setColumnHigherAddress[2] = {SH1106_COMMAND, 0x10 + higherNibble};
+  uint8_t setColumnLowerAddress[2]  = {SH1106_COMMAND_FLAG, 0x00 + lowerNibble};
+  uint8_t setColumnHigherAddress[2] = {SH1106_COMMAND_FLAG, 0x10 + higherNibble};
   SH1106_CALL_HAL_I2C_Transmit(setColumnLowerAddress, 2, 1000);
   SH1106_CALL_HAL_I2C_Transmit(setColumnHigherAddress, 2, 1000);
 }
@@ -155,9 +153,9 @@ void SH1106_Set_Page_And_Column_Address(uint8_t page, uint8_t column) {
   * @brief This function sends one byte of data to the display.
   * @param data:          data to transmit
   */
-void SH1106_Transmit_Data(uint8_t data) {
+void SH1106_Transmit_DataByte(uint8_t data) {
   uint8_t buffer[2];
-    buffer[0] = SH1106_DATA;
+    buffer[0] = SH1106_DATA_FLAG;
     buffer[1] = data;
     SH1106_CALL_HAL_I2C_Transmit(buffer, 2, 1000);
 }
@@ -168,11 +166,25 @@ void SH1106_Transmit_Data(uint8_t data) {
   */
 void SH1106_Transmit_Command(uint8_t command) {
   uint8_t buffer[2];
-    buffer[0] = SH1106_COMMAND;
+    buffer[0] = SH1106_COMMAND_FLAG;
     buffer[1] = command;
     SH1106_CALL_HAL_I2C_Transmit(buffer, 2, 1000);
 }
 
+/**
+  * @brief This function sends the screenBuffer to the display.
+  */
+void SH1106_Transmit_Buffer(void) {
+  uint8_t transmitBuffer[SH1106_WIDTH + 1];
+  transmitBuffer[0] = SH1106_DATA_FLAG;
+
+  for(uint8_t page = 0; page < 8; page++){
+    memcpy(&transmitBuffer[1], &screenBuffer[page][0], SH1106_WIDTH);
+
+    SH1106_Set_Page_And_Column_Address(page, 0);
+    SH1106_CALL_HAL_I2C_Transmit(transmitBuffer, sizeof(transmitBuffer), 1000);
+  }
+}
 
 /**
   * @brief This function sends a single character to the display.
@@ -183,7 +195,7 @@ void SH1106_Display_Character(uint8_t character) {
     return; // Do nothing when character is out of bound.
   }
   for(int i = 0; i < 7; i++) {
-    SH1106_Transmit_Data(minecraft_condensed[character][i]);
+    SH1106_Transmit_DataByte(minecraft_condensed[character][i]);
     HAL_Delay(1); // Small delay for processing time.
   }
 }
@@ -272,16 +284,17 @@ void SH1106_Set_Pixel(uint8_t x, uint8_t y) {
   }
 
   uint8_t page = y / 8;
-  uint8_t bit = (1 << (y % 8));
+  uint8_t byte = (1 << (y % 8));
 
   uint8_t column = x;
 
   SH1106_Set_Cursor(page, column);
-  SH1106_Transmit_Data(bit);
+  SH1106_Transmit_DataByte(byte);
 }
 
+
 /**
-  * @brief This function draws a line between two points. CAREFUL: function overwrites the whole byte to set one bit.
+  * @brief This function draws a line between two points.
   * @param xA: xA-position (0-127)
   * @param yA: yA-position (0-63)
   * @param xB: xB-position (0-127)
@@ -302,9 +315,7 @@ void SH1106_Draw_Line(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY
     // Set pixel at (xA, xY)
     uint8_t page = startY / 8;
     uint8_t bit = (1 << (startY % 8));
-    uint8_t column = startX;
-    SH1106_Set_Cursor(page, column);
-    SH1106_Transmit_Data(bit);
+    screenBuffer[page][startX] |= bit;
 
     // Break when reaching endpoint
     if(startX == endX && startY == endY) {
@@ -315,11 +326,10 @@ void SH1106_Draw_Line(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY
     if(doubleError > deltaY) {
       error -= deltaY;
       startX += stepX;
-    }
-    if(doubleError < deltaX) {
+    } else {
       error += deltaX;
       startY += stepY;
     }
-
   }
+  SH1106_Transmit_Buffer();
 }
