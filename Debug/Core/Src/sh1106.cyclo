@@ -15,3 +15,4 @@
 ../Core/Src/sh1106.c:210:6:SH1106_Display_String	5
 ../Core/Src/sh1106.c:232:6:SH1106_Display_Text	5
 ../Core/Src/sh1106.c:269:6:SH1106_Set_Pixel	3
+../Core/Src/sh1106.c:290:6:SH1106_Draw_Line	11

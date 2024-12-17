@@ -279,3 +279,47 @@ void SH1106_Set_Pixel(uint8_t x, uint8_t y) {
   SH1106_Set_Cursor(page, column);
   SH1106_Transmit_Data(bit);
 }
+
+/**
+  * @brief This function draws a line between two points. CAREFUL: function overwrites the whole byte to set one bit.
+  * @param xA: xA-position (0-127)
+  * @param yA: yA-position (0-63)
+  * @param xB: xB-position (0-127)
+  * @param yB: yB-position (0-63)
+  */
+void SH1106_Draw_Line(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY) {
+  if(startX >= SH1106_WIDTH || endX >= SH1106_WIDTH || startY >= SH1106_HEIGHT || endY >= SH1106_HEIGHT) {
+    return;
+  }
+
+  int16_t deltaX = abs(endX - startX);
+  int16_t deltaY = abs(endY - startY);
+  int16_t stepX = (startX < endX) ? 1 : -1;
+  int16_t stepY = (startY < endY) ? 1 : -1;
+  int16_t error = deltaX - deltaY;
+
+  while(1) {
+    // Set pixel at (xA, xY)
+    uint8_t page = startY / 8;
+    uint8_t bit = (1 << (startY % 8));
+    uint8_t column = startX;
+    SH1106_Set_Cursor(page, column);
+    SH1106_Transmit_Data(bit);
+
+    // Break when reaching endpoint
+    if(startX == endX && startY == endY) {
+      break;
+    }
+
+    int16_t doubleError = 2 * error;
+    if(doubleError > deltaY) {
+      error -= deltaY;
+      startX += stepX;
+    }
+    if(doubleError < deltaX) {
+      error += deltaX;
+      startY += stepY;
+    }
+
+  }
+}

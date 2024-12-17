@@ -9,6 +9,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f0xx_hal.h"
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #include "../Font/minecraft_condensed.h"
 
@@ -85,6 +86,7 @@ void SH1106_Display_String(char* string);
 void SH1106_Display_Text(char* string);
 
 void SH1106_Set_Pixel(uint8_t x, uint8_t y);
+void SH1106_Draw_Line(uint8_t xA, uint8_t yA, uint8_t xB, uint8_t yB);
 
 #ifdef __cplusplus
 }

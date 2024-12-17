@@ -100,15 +100,11 @@ int main(void) {
   SH1106_Init(&hi2c1, SH1106_DEV_ADDRESS);
   SH1106_Display_Clear();
   SH1106_Display_On();
-  HAL_Delay(1);
 
-  SH1106_Set_Cursor(7, 0);
-  SH1106_Display_Text("This text is displayed with automatic line wrapping. This is awesome! I need this text a little longer.");
-
-  SH1106_Set_Pixel(0, 0);
-  SH1106_Set_Pixel(127, 0);
-  SH1106_Set_Pixel(1, 63);
-  SH1106_Set_Pixel(127, 63);
+  SH1106_Draw_Line(100, 63, 12, 5);
+  SH1106_Draw_Line(23, 15, 96, 18);
+  SH1106_Draw_Line(0, 55, 85, 38);
+  SH1106_Draw_Line(68, 3, 22, 52);
 
   /* USER CODE END 2 */
 
